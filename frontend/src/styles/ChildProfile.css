@@ -1,0 +1,173 @@
+/* Paleta de cores */
+:root {
+    --azul-claro: #59BACC;
+    --laranja: #F7761D;
+    --roxo: #AB76B0;
+    --roxo-escuro: #8E5A93;
+    --amarelo: #FFD55E;
+    --branco: #FFFFFF;
+    --cinza-escuro: #606060;
+    --verde-forte: #3CB371;
+    --roxo-claro: #E8D8EA; /* Novo: Tom claro derivado de #AB76B0 para o fundo */
+  }
+  
+  /* Reset básico */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Página */
+  .profile-page {
+    background: linear-gradient(
+      135deg,
+      var(--roxo-claro) 0%,
+      var(--branco) 100%
+    ); /* Gradiente suave */
+    min-height: 100vh;
+    padding-top: 70px;
+  }
+  
+  /* Navbar */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--roxo);
+    color: var(--branco);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .navbar-brand {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+  
+  .btn-logout {
+    background-color: var(--laranja);
+    color: var(--branco);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .btn-logout:hover {
+    background-color: #ff8c3a; /* Laranja mais claro para hover */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  }
+  
+  /* Container principal */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px);
+    padding: 20px;
+  }
+  
+  /* Card */
+  .card {
+    background-color: var(--branco);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+    padding: 25px;
+    border: 2px solid var(--roxo);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Foto */
+  .photo-section {
+    margin-bottom: 20px;
+  }
+  
+  .photo-section img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--branco);
+    object-fit: cover;
+  }
+  
+  /* Informações */
+  .info-section {
+    text-align: center;
+  }
+  
+  .info-section h2 {
+    color: var(--roxo);
+    font-size: 1.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .info-section p {
+    color: var(--cinza-escuro);
+    font-size: 1rem;
+    margin: 10px 0;
+  }
+  
+  /* Status do pagamento */
+  .status {
+    padding: 6px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    display: inline-block;
+  }
+  
+  .status-ativo {
+    background-color: var(--verde-forte);
+    color: var(--branco);
+  }
+  
+  /* Link contrato */
+  .contract-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: var(--roxo);
+    color: var(--branco);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .contract-link:hover {
+    background-color: var(--roxo-escuro);
+    color: var(--branco); /* Garante que não fica azul */
+  }
+  
+  /* Responsividade */
+  @media (max-width: 480px) {
+    .card {
+      max-width: 100%;
+      padding: 20px;
+    }
+  
+    .photo-section img {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .info-section h2 {
+      font-size: 1.6rem;
+    }
+  
+    .info-section p {
+      font-size: 0.95rem;
+    }
+  }

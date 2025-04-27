@@ -1,0 +1,254 @@
+/* Paleta de cores */
+:root {
+  --azul-claro: #59BACC;
+  --laranja: #F7761D;
+  --roxo: #AB76B0;
+  --roxo-escuro: #8E5A93;
+  --amarelo: #FFD55E;
+  --branco: #FFFFFF;
+  --cinza-escuro: #606060;
+  --verde-forte: #3CB371;
+  --roxo-claro: #E8D8EA;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Página */
+.notifications-page {
+  background: linear-gradient(135deg, var(--roxo-claro) 0%, var(--branco) 100%);
+  min-height: 100vh;
+  padding-top: 70px;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--roxo);
+  color: var(--branco);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.btn-logout {
+  background-color: var(--laranja);
+  color: var(--branco);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-logout:hover {
+  background-color: #ff8c3a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Container principal */
+.notifications-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Título */
+.notifications-title {
+  color: var(--roxo);
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.title-icon {
+  font-size: 2.5rem;
+}
+
+/* Lista de notificações */
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notification-item {
+  background-color: var(--branco);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.notification-item.payment-reminder {
+  border-left: 4px solid var(--laranja);
+}
+
+.notification-item.payment-status {
+  border-left: 4px solid var(--verde-forte);
+}
+
+.notification-item.payment-status.pending {
+  border-left: 4px solid #ff0000;
+}
+
+.notification-item.general {
+  border-left: 4px solid var(--roxo);
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.notification-icon-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notification-icon {
+  color: var(--roxo);
+  font-size: 1.5rem;
+}
+
+.notification-date {
+  color: var(--cinza-escuro);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.notification-message {
+  color: var(--cinza-escuro);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.payment-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: var(--laranja);
+  color: var(--branco);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.payment-link:hover {
+  background-color: #ff8c3a;
+}
+
+.status-icon {
+  font-size: 1.5rem;
+}
+
+.status-icon.paid {
+  color: var(--verde-forte);
+}
+
+.status-icon.pending {
+  color: #ff0000;
+}
+
+/* Estados */
+.loading-state,
+.empty-state {
+  text-align: center;
+  color: var(--cinza-escuro);
+  font-size: 1.2rem;
+  padding: 20px;
+  background-color: var(--branco);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+/* Botão Falar com a Equipe */
+.btn-contact-team {
+  background-color: var(--verde-forte);
+  color: var(--branco);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 30px auto 0;
+}
+
+.btn-contact-team:hover {
+  background-color: #2e8b57;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .notifications-container {
+    padding: 15px;
+  }
+
+  .notifications-title {
+    font-size: 1.8rem;
+  }
+
+  .notification-item {
+    padding: 15px;
+  }
+
+  .notification-message {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .notifications-title {
+    font-size: 1.6rem;
+  }
+
+  .title-icon {
+    font-size: 2rem;
+  }
+
+  .notification-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .notification-date {
+    font-size: 0.85rem;
+  }
+
+  .btn-contact-team {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
