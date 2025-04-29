@@ -8,9 +8,11 @@
 }
 
 /* Sidebar vertical com cor #59BACC */
-.sidebar {
+.login-page .sidebar {
   background-color: #59BACC;
-  width: 300px;
+  width: 30%;
+  min-width: 280px;
+  max-width: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,7 +179,7 @@
     flex-direction: column;
   }
 
-  .sidebar {
+  .login-page .sidebar {
     width: 100%;
     min-height: 200px;
     padding: 1rem;

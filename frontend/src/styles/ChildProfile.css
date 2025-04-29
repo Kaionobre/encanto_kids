@@ -110,7 +110,7 @@
   color: var(--branco);
 }
 
-/* Link contrato */
+/* Remover o estilo padrão de links */
 .contract-link {
   display: block;
   margin-top: 25px;
@@ -125,14 +125,14 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.contract-link:hover {
-  background-color: var(--roxo-escuro);
-  transform: translateY(-2px);
-}
-
+/* Quando o link estiver no estado de hover, focus ou active, garantir que o comportamento do link seja o esperado */
+.contract-link:hover,
+.contract-link:focus,
 .contract-link:active {
   background-color: var(--roxo-escuro);
-  transform: translateY(0);
+  transform: translateY(-2px);
+  outline: none;  /* Remove o contorno do foco */
+  color: var(--branco); /* Garante que a cor não mude ao focar */
 }
 
 /* Responsividade */

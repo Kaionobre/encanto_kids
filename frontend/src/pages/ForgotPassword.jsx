@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ForgotPassword.css';
 import Logo from '../assets/images/LOGO - ENCANTO KIDS 3.png';
-import Navbar from '../components/Navbar';
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -10,7 +9,6 @@ function ForgotPassword() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  // CPF mask function (reutilizado de Login.jsx)
   const formatCpf = (value) => {
     const cleaned = value.replace(/\D/g, '');
     const match = cleaned.match(/^(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})$/);
@@ -32,13 +30,11 @@ function ForgotPassword() {
     setError('');
     setSuccess('');
 
-    // Basic validation
     if (!cpf) {
       setError('Por favor, insira o CPF');
       return;
     }
 
-    // Simulate password reset request (substituir por chamada real a API)
     console.log('Solicitando recuperação de senha para CPF:', cpf);
     setSuccess('Um e-mail com instruções para redefinir sua senha foi enviado.');
     setCpf('');
@@ -50,8 +46,6 @@ function ForgotPassword() {
 
   return (
     <div className="forgot-password-page">
-      <Navbar />
-
       <aside className="sidebar">
         <div className="sidebar-content">
           <div className="logo-wrapper">
@@ -65,7 +59,6 @@ function ForgotPassword() {
 
       <main className="forgot-password-main">
         <div className="forgot-password-content">
-          <h1 className="welcome-message">Recuperar Senha</h1>
           <div className="forgot-password-container">
             <h2 className="forgot-password-header">Redefinir sua senha</h2>
 

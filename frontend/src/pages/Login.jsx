@@ -9,7 +9,7 @@ function Login() {
   const [senha, setSenha] = useState('');
   const [error, setError] = useState('');
 
-  // Função de formatação do CPF
+  // Máscara para CPF
   const formatCpf = (value) => {
     const cleaned = value.replace(/\D/g, '');
     const match = cleaned.match(/^(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})$/);
@@ -29,18 +29,16 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validação básica
     if (!cpf || !senha) {
       setError('Por favor, preencha todos os campos');
       return;
     }
 
-    // Simulação de autenticação (substituir por chamada real)
+    // Simulação de autenticação (substituir por API real)
     console.log('CPF:', cpf);
     console.log('Senha:', senha);
     localStorage.setItem('isAuthenticated', 'true');
 
-    // Limpa erro e redireciona
     setError('');
     navigate('/childprofile');
   };
@@ -61,9 +59,11 @@ function Login() {
       <main className="login-main">
         <div className="login-content">
           <h1 className="welcome-message">Bem-vindo(a) de volta!</h1>
+
           <div className="login-container">
             <h2 className="login-header">Acesse sua conta</h2>
             {error && <p className="error-message">{error}</p>}
+
             <form className="login-form" onSubmit={handleSubmit}>
               <div className="login-form-group">
                 <label htmlFor="cpf">CPF:</label>
@@ -77,6 +77,7 @@ function Login() {
                   maxLength={14}
                 />
               </div>
+
               <div className="login-form-group">
                 <label htmlFor="senha">Senha:</label>
                 <input
@@ -87,10 +88,11 @@ function Login() {
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
                 />
-                <a href="#" className="forgot-password-link">
+                <a href="/forgot-password" className="forgot-password-link">
                   Esqueceu sua senha?
                 </a>
               </div>
+
               <button type="submit" className="login-button">
                 ENTRAR
               </button>

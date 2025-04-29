@@ -26,11 +26,11 @@
   padding-top: 70px;
 }
 
-/* Container principal */
+/* Container principal (ajustado para combinar com a agenda) */
 .notifications-container {
-  max-width: 90rem;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 1.5rem 1rem;
+  padding: 20px;
 }
 
 /* Título */
@@ -187,7 +187,7 @@
   }
 
   .notifications-container {
-    padding: 1rem;
+    padding: 15px;
   }
 
   .notifications-list {

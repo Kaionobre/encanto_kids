@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../styles/Notifications.css';
 import { FaBell, FaMoneyBillWave, FaCheckCircle, FaTimesCircle, FaWhatsapp } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
 
 function Notifications() {
-  const [isLoading, setIsLoading] = useState(true);
-
   const handleContactTeam = () => {
     window.open('https://wa.me/5511999999999', '_blank');
   };
@@ -43,7 +41,7 @@ function Notifications() {
     },
   ];
 
-  // Função para formatar data
+  // Formatar data
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('pt-BR', {
@@ -53,15 +51,10 @@ function Notifications() {
     });
   };
 
-  // Ordenar notificações por data (mais recente primeiro)
+  // Ordenar notificações por data
   const sortedNotifications = [...notifications].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
-
-  useEffect(() => {
-    // Simular carregamento
-    setTimeout(() => setIsLoading(false), 1000);
-  }, []);
 
   return (
     <div className="notifications-page">
@@ -71,9 +64,7 @@ function Notifications() {
           <FaBell className="title-icon" /> Notificações e Avisos
         </h1>
 
-        {isLoading ? (
-          <div className="loading-state">Carregando notificações...</div>
-        ) : sortedNotifications.length === 0 ? (
+        {sortedNotifications.length === 0 ? (
           <div className="empty-state">Nenhuma notificação disponível</div>
         ) : (
           <section className="notifications-list">
