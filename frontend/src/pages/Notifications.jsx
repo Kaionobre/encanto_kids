@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Notifications.css';
 import { FaBell, FaMoneyBillWave, FaCheckCircle, FaTimesCircle, FaWhatsapp } from 'react-icons/fa';
+import Navbar from '../components/Navbar';
 
 function Notifications() {
   const [isLoading, setIsLoading] = useState(true);
-  
-  const handleLogout = () => {
-    console.log('Usuário desconectado');
-    // Adicionar lógica de logout aqui
-  };
 
   const handleContactTeam = () => {
     window.open('https://wa.me/5511999999999', '_blank');
@@ -69,17 +65,7 @@ function Notifications() {
 
   return (
     <div className="notifications-page">
-      <header className="navbar">
-        <div className="navbar-brand">Encanto Kids</div>
-        <button
-          className="btn-logout"
-          onClick={handleLogout}
-          aria-label="Sair da conta"
-        >
-          Sair
-        </button>
-      </header>
-
+      <Navbar />
       <main className="notifications-container">
         <h1 className="notifications-title">
           <FaBell className="title-icon" /> Notificações e Avisos

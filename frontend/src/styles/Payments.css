@@ -1,0 +1,282 @@
+/* Paleta de cores (reutilizando a mesma do dashboard) */
+:root {
+  --azul-claro: #59BACC;
+  --laranja: #F7761D;
+  --roxo: #AB76B0;
+  --roxo-escuro: #8E5A93;
+  --amarelo: #FFD55E;
+  --branco: #FFFFFF;
+  --cinza-escuro: #606060;
+  --verde-forte: #3CB371;
+  --roxo-claro: #E8D8EA;
+  --vermelho: #FF4D4D;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Página */
+.payments-page {
+  background: linear-gradient(135deg, var(--roxo-claro) 0%, var(--branco) 100%);
+  min-height: 100vh;
+  padding-top: 70px;
+}
+
+/* Container principal */
+.payments-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Título */
+.payments-title {
+  color: var(--roxo);
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Status Atual */
+.status-section {
+  margin-bottom: 40px;
+}
+
+.status-section h2 {
+  color: var(--roxo);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.status-widget {
+  background-color: var(--branco);
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 4px solid var(--laranja);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.status-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.status-icon {
+  font-size: 2.5rem;
+  color: var(--laranja);
+}
+
+.status-info h3 {
+  color: var(--cinza-escuro);
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.status-info p {
+  color: var(--cinza-escuro);
+  font-size: 1.1rem;
+}
+
+.status-paid .status-indicator {
+  color: var(--verde-forte);
+  margin-right: 5px;
+}
+
+.status-pending .status-indicator {
+  color: var(--vermelho);
+  margin-right: 5px;
+}
+
+.payment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+.action-btn {
+  background-color: var(--azul-claro);
+  color: var(--branco);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-btn.pix {
+  background-color: var(--verde-forte);
+}
+
+.action-btn.boleto {
+  background-color: var(--roxo);
+}
+
+.action-btn.card {
+  background-color: var(--amarelo);
+  color: var(--cinza-escuro);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+}
+
+.action-btn.pix:hover {
+  background-color: #2e8b57;
+}
+
+.action-btn.boleto:hover {
+  background-color: var(--roxo-escuro);
+}
+
+.action-btn.card:hover {
+  background-color: #ffca28;
+}
+
+.boleto-link {
+  color: var(--laranja);
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.boleto-link:hover {
+  color: #ff8c3a;
+}
+
+/* Histórico de Pagamentos */
+.history-section {
+  margin-bottom: 40px;
+}
+
+.history-section h2 {
+  color: var(--roxo);
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.history-table {
+  background-color: var(--branco);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+th {
+  background-color: var(--roxo);
+  color: var(--branco);
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: var(--roxo-claro);
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.status-paid,
+.status-pending {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .payments-container {
+    padding: 15px;
+  }
+
+  .payments-title {
+    font-size: 1.8rem;
+  }
+
+  .status-widget {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .payment-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .boleto-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  th,
+  td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .payments-title {
+    font-size: 1.6rem;
+  }
+
+  .status-section h2,
+  .history-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .status-icon {
+    font-size: 2rem;
+  }
+
+  .status-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .status-info p {
+    font-size: 1rem;
+  }
+
+  th,
+  td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+}

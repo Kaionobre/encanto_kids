@@ -1,8 +1,10 @@
 /* Container principal com sidebar e área de login */
 .login-page {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  flex-direction: row;
+  overflow: hidden;
 }
 
 /* Sidebar vertical com cor #59BACC */
@@ -12,8 +14,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  position: relative;
+  padding: 1.5rem;
+  flex-shrink: 0;
 }
 
 .sidebar-content {
@@ -23,7 +25,7 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  position: relative;
+  text-align: center;
 }
 
 /* Estilo da logo circular */
@@ -34,13 +36,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2rem;
-  position: relative;
+  margin-bottom: 1.5rem;
 }
 
 .logo-wrapper img {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -48,10 +49,8 @@
 /* Texto da sidebar */
 .sidebar-content p {
   color: #ffffff;
-  text-align: center;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  margin-top: 0rem;
+  font-size: 1.1rem;
+  line-height: 1.4;
   font-weight: bold;
 }
 
@@ -62,6 +61,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
 }
 
 /* Container para a mensagem de boas-vindas e o login */
@@ -70,30 +70,33 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  width: 100%;
+  max-width: 450px;
 }
 
 /* Mensagem de boas-vindas */
 .welcome-message {
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* Container do login com fundo branco */
 .login-container {
   background-color: #FFFFFF;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
 }
 
 /* Título do login */
 .login-header {
   text-align: center;
   margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 /* Estilo do formulário */
@@ -107,33 +110,32 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  position: relative;
 }
 
 .login-form label {
   color: #606060;
   font-size: 0.9rem;
   font-weight: bold;
-  text-align: left;
-  padding-left: 0px;
 }
 
 .login-form input {
   padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-#cpf,
-#senha {
   border: 2px solid #606060;
   border-radius: 8px;
+  font-size: 1rem;
 }
 
-#cpf:focus,
-#senha:focus {
+.login-form input:focus {
   outline: none;
   border-color: #F77E1D;
+}
+
+/* Error message */
+.error-message {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 /* Botão de login */
@@ -145,6 +147,12 @@
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #e06e15;
 }
 
 /* Link "Esqueceu sua senha?" */
@@ -154,12 +162,75 @@
   color: #606060;
   text-decoration: none;
   margin-top: 0.3rem;
-  transition: color 0.2s ease;
   font-weight: bold;
+  transition: color 0.2s ease;
 }
 
 .forgot-password-link:hover {
   color: #AB76B0;
   text-decoration: underline;
-  font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+  }
+
+  .logo-wrapper img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .sidebar-content p {
+    font-size: 1rem;
+  }
+
+  .login-main {
+    padding: 1.5rem;
+  }
+
+  .login-container {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .welcome-message {
+    font-size: 1.4rem;
+  }
+
+  .login-header {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-wrapper img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .sidebar-content p {
+    font-size: 0.9rem;
+  }
+
+  .welcome-message {
+    font-size: 1.2rem;
+  }
+
+  .login-form input {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .login-button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
 }

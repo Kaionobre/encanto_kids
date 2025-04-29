@@ -1,173 +1,190 @@
 /* Paleta de cores */
 :root {
-    --azul-claro: #59BACC;
-    --laranja: #F7761D;
-    --roxo: #AB76B0;
-    --roxo-escuro: #8E5A93;
-    --amarelo: #FFD55E;
-    --branco: #FFFFFF;
-    --cinza-escuro: #606060;
-    --verde-forte: #3CB371;
-    --roxo-claro: #E8D8EA; /* Novo: Tom claro derivado de #AB76B0 para o fundo */
-  }
-  
-  /* Reset básico */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  /* Página */
-  .profile-page {
-    background: linear-gradient(
-      135deg,
-      var(--roxo-claro) 0%,
-      var(--branco) 100%
-    ); /* Gradiente suave */
-    min-height: 100vh;
-    padding-top: 70px;
-  }
-  
-  /* Navbar */
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--roxo);
-    color: var(--branco);
-    padding: 12px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .navbar-brand {
-    font-size: 1.6rem;
-    font-weight: bold;
-  }
-  
-  .btn-logout {
-    background-color: var(--laranja);
-    color: var(--branco);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    font-weight: bold;
-  }
-  
-  .btn-logout:hover {
-    background-color: #ff8c3a; /* Laranja mais claro para hover */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
-  }
-  
-  /* Container principal */
-  .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 70px);
+  --azul-claro: #59BACC;
+  --laranja: #F7761D;
+  --roxo: #AB76B0;
+  --roxo-escuro: #8E5A93;
+  --amarelo: #FFD55E;
+  --branco: #FFFFFF;
+  --cinza-escuro: #606060;
+  --verde-forte: #3CB371;
+  --roxo-claro: #E8D8EA;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Página */
+.profile-page {
+  background: linear-gradient(135deg, var(--roxo-claro) 0%, var(--branco) 100%);
+  min-height: 100vh;
+  padding-top: 70px;
+}
+
+/* Container principal */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  padding: 20px;
+}
+
+/* Card */
+.card {
+  background-color: var(--branco);
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  border: 2px solid var(--roxo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Foto */
+.photo-section {
+  margin-bottom: 20px;
+}
+
+.photo-section img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 5px solid var(--branco);
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Informações */
+.info-section {
+  width: 100%;
+  text-align: left;
+}
+
+.info-section h2 {
+  color: var(--roxo);
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0px;
+}
+
+.info-grid p {
+  color: var(--cinza-escuro);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.info-grid p strong {
+  color: var(--roxo-escuro);
+  font-weight: 700;
+}
+
+/* Status do pagamento */
+.status {
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-ativo {
+  background-color: var(--verde-forte);
+  color: var(--branco);
+}
+
+/* Link contrato */
+.contract-link {
+  display: block;
+  margin-top: 25px;
+  padding: 12px 30px;
+  background-color: var(--roxo);
+  color: var(--branco);
+  text-decoration: none;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contract-link:hover {
+  background-color: var(--roxo-escuro);
+  transform: translateY(-2px);
+}
+
+.contract-link:active {
+  background-color: var(--roxo-escuro);
+  transform: translateY(0);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .card {
+    max-width: 90%;
     padding: 20px;
   }
-  
-  /* Card */
-  .card {
-    background-color: var(--branco);
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 420px;
-    padding: 25px;
-    border: 2px solid var(--roxo);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Foto */
-  .photo-section {
-    margin-bottom: 20px;
-  }
-  
+
   .photo-section img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 5px solid var(--branco);
-    object-fit: cover;
+    width: 140px;
+    height: 140px;
   }
-  
-  /* Informações */
-  .info-section {
-    text-align: center;
-  }
-  
+
   .info-section h2 {
-    color: var(--roxo);
-    font-size: 1.9rem;
+    font-size: 1.8rem;
+  }
+
+  .info-grid p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-page {
+    padding-top: 70px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .photo-section img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .info-section h2 {
+    font-size: 1.6rem;
     margin-bottom: 15px;
   }
-  
-  .info-section p {
-    color: var(--cinza-escuro);
-    font-size: 1rem;
-    margin: 10px 0;
-  }
-  
-  /* Status do pagamento */
-  .status {
-    padding: 6px 20px;
-    border-radius: 25px;
-    font-weight: bold;
+
+  .info-grid p {
     font-size: 0.95rem;
-    display: inline-block;
   }
-  
-  .status-ativo {
-    background-color: var(--verde-forte);
-    color: var(--branco);
-  }
-  
-  /* Link contrato */
+
   .contract-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 25px;
-    background-color: var(--roxo);
-    color: var(--branco);
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    font-weight: bold;
+    padding: 10px 20px;
+    font-size: 0.9rem;
   }
-  
-  .contract-link:hover {
-    background-color: var(--roxo-escuro);
-    color: var(--branco); /* Garante que não fica azul */
-  }
-  
-  /* Responsividade */
-  @media (max-width: 480px) {
-    .card {
-      max-width: 100%;
-      padding: 20px;
-    }
-  
-    .photo-section img {
-      width: 120px;
-      height: 120px;
-    }
-  
-    .info-section h2 {
-      font-size: 1.6rem;
-    }
-  
-    .info-section p {
-      font-size: 0.95rem;
-    }
-  }
+}
