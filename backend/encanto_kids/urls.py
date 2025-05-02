@@ -20,6 +20,8 @@ from apps.contrato.api import router
 from apps.crianca.api import router
 from apps.pacote.api import router
 from apps.responsavel.api import router
+from apps.autenticacao.api import router
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +29,10 @@ urlpatterns = [
     path('api/', include('apps.crianca.api.router')),
     path('api/', include('apps.pacote.api.router')),
     path('api/', include('apps.responsavel.api.router')),
+    path('api/auth/', include('apps.autenticacao.api.router')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),  
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
 ]
 
 

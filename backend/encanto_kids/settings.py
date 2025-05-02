@@ -25,16 +25,16 @@ SECRET_KEY = 'django-insecure-d!x7+4(%0*x34ope5*5qyluw4j#^8)5p=m((wbjtac@u&0&^7m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+AUTH_USER_MODEL = 'autenticacao.CustomUser'
+
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 APPS = [
     'apps.contrato',
     'apps.crianca',
     'apps.pacote',
     'apps.responsavel',
+    'apps.autenticacao'
 ]
 
 INSTALLED_APPS = [
@@ -46,20 +46,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ] + APPS
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     ),
-# }
-
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # URL do frontend em desenvolvimento
+    "http://localhost:3000",  
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # Tem que vir logo no topo
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
