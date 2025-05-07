@@ -1,0 +1,132 @@
+.painel-administrativo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5e1f3;
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Conteúdo rolável */
+.cards-container {
+  flex: 1;
+  padding: 1rem 2rem;
+  overflow-y: auto;
+}
+
+/* Seções: Lembretes, Tarefas administrativas, Ações rápidas */
+.section {
+  margin-bottom: 2rem;
+}
+
+/* Estilo de card */
+.card {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border: 1px solid #9b59b6;
+  border-radius: 8px;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.child-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.card-info strong {
+  font-size: 1rem;
+}
+
+.card-info p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover {
+  background-color: #cf711f;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.quick-action-button {
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+  width: 220px;
+  max-width: 100%;
+}
+
+.quick-action-button:hover {
+  background-color: #cf711f;
+}
+
+/* Topo */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #9b59b6;
+  border-bottom: 1px solid #ccc;
+}
+
+.sair-button {
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sair-button:hover {
+  background-color: #a93226;
+}
