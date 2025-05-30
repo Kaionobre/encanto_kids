@@ -11,12 +11,16 @@ import './index.css';
 
 // Componente para proteger rotas
 const ProtectedRoute = ({ children }) => {
-  // Simulação de autenticação (substituir por lógica real, ex.: verificar token)
-  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+  // CORREÇÃO AQUI: Verificar a existência do 'accessToken'
+  const isAuthenticated = !!localStorage.getItem('accessToken'); // !! converte para booleano
 
   if (!isAuthenticated) {
     // Redireciona para login se não estiver autenticado
+    // Adiciona o estado para redirecionar de volta após o login, se desejado
     return <Navigate to="/login" replace />;
+    // Se quiser redirecionar para a página que tentou acessar após o login:
+    // return <Navigate to="/login" state={{ from: location }} replace />;
+    // (Para usar 'location', você precisaria importar 'useLocation' de 'react-router-dom' aqui)
   }
 
   return children;
@@ -33,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         {/* Redireciona raiz para login */}
         <Route path="/" element={<Navigate to="/login" replace />} />
         
-        {/* Rotas protegidas */}
+        {/* Rotas protegidas - agora devem funcionar após o login */}
         <Route
           path="/childprofile"
           element={

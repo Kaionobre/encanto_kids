@@ -7,8 +7,13 @@
   --amarelo: #FFD55E;
   --branco: #FFFFFF;
   --cinza-escuro: #606060;
+  --cinza-medio: #888;
+  --cinza-claro: #f0f0f0;
   --verde-forte: #3CB371;
   --roxo-claro: #E8D8EA;
+  --vermelho: #FF4D4D; /* Usado para status pendente */
+  --vermelho-urgente-borda: #e74c3c; /* Para notificações urgentes não lidas */
+  --azul-link: #3498db; /* Para links de ação */
 }
 
 /* Reset básico */
@@ -23,206 +28,256 @@
 .notifications-page {
   background: linear-gradient(135deg, var(--roxo-claro) 0%, var(--branco) 100%);
   min-height: 100vh;
-  padding-top: 70px;
+  padding-top: 70px; /* Espaço para o Navbar */
 }
 
-/* Container principal (ajustado para combinar com a agenda) */
+/* Container principal */
 .notifications-container {
-  max-width: 1200px;
+  max-width: 800px; /* Um pouco mais estreito para notificações */
   margin: 0 auto;
   padding: 20px;
 }
 
 /* Título */
 .notifications-title {
-  color: var(--roxo);
-  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  color: var(--roxo-escuro); /* Mais escuro para destaque */
+  font-size: clamp(1.8rem, 6vw, 2.4rem); /* Ajustado */
   font-weight: bold;
   text-align: center;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.625rem;
+  gap: 0.75rem; /* Aumentado o gap */
 }
 
 .title-icon {
-  font-size: clamp(2rem, 7vw, 2.5rem);
+  font-size: clamp(2.2rem, 7vw, 2.8rem); /* Ajustado */
+  color: var(--roxo);
 }
+
+/* Botão Marcar todas como lidas */
+.btn-mark-all-read {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--azul-claro);
+  color: var(--branco);
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.2s ease;
+}
+.btn-mark-all-read:hover:not(:disabled) {
+  background-color: #4aa8b9;
+}
+.btn-mark-all-read:disabled {
+  background-color: var(--cinza-claro);
+  color: var(--cinza-medio);
+  cursor: not-allowed;
+}
+
 
 /* Lista de notificações */
 .notifications-list {
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem; /* Reduzido o gap */
 }
 
 /* Item de notificação */
 .notification-item {
   background-color: var(--branco);
-  border-radius: 0.75rem;
-  padding: 1.25rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+  border-radius: 8px; /* Bordas mais suaves */
+  padding: 1rem 1.25rem; /* Padding ajustado */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 4px solid var(--cinza-claro); /* Borda padrão */
+  position: relative; /* Para o botão de marcar como lida */
 }
 
 .notification-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.notification-item.payment-reminder {
-  border-left: 0.25rem solid var(--laranja);
+/* Estilos baseados no tipo (vindo da API) */
+.notification-item.geral { border-left-color: var(--roxo); }
+.notification-item.lembrete_pagamento { border-left-color: var(--laranja); }
+.notification-item.status_pagamento.pago { border-left-color: var(--verde-forte); } /* Supondo que 'status_cobranca' seja 'pago' */
+.notification-item.status_pagamento.pendente { border-left-color: var(--vermelho); } /* Supondo que 'status_cobranca' seja 'pendente' */
+.notification-item.aviso_evento { border-left-color: var(--amarelo); }
+.notification-item.novo_anexo_agenda { border-left-color: var(--azul-claro); }
+
+
+/* Estilo para notificações urgentes e não lidas */
+.notification-item.urgente:not(.lida) {
+  border-left-width: 5px;
+  border-left-color: var(--vermelho-urgente-borda);
+  background-color: #fff7f7; /* Fundo levemente avermelhado */
+}
+.notification-item.urgente:not(.lida) .notification-icon-wrapper .notification-icon {
+  color: var(--vermelho-urgente-borda);
 }
 
-.notification-item.payment-status {
-  border-left: 0.25rem solid var(--verde-forte);
+
+/* Estilo para notificações lidas */
+.notification-item.lida {
+  background-color: #f9f9f9; /* Fundo um pouco diferente para lidas */
+  opacity: 0.8; /* Levemente transparente */
+}
+.notification-item.lida .notification-message,
+.notification-item.lida .notification-title-text {
+  color: var(--cinza-medio);
 }
 
-.notification-item.payment-status.pending {
-  border-left: 0.25rem solid #ff0000;
-}
-
-.notification-item.general {
-  border-left: 0.25rem solid var(--roxo);
-}
 
 .notification-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.625rem;
-  gap: 0.625rem;
+  align-items: flex-start; /* Alinha ao topo para datas não interferirem com ícones altos */
+  margin-bottom: 0.5rem;
+  gap: 0.5rem;
 }
 
 .notification-icon-wrapper {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem; /* Aumentado o gap */
+  flex-grow: 1; /* Permite que o título ocupe espaço */
 }
 
 .notification-icon {
-  color: var(--roxo);
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-size: clamp(1.3rem, 4vw, 1.6rem); /* Ajustado */
+  /* A cor será definida pelo tipo específico */
+}
+.notification-icon.general-icon { color: var(--roxo); }
+.notification-icon.payment-reminder-icon { color: var(--laranja); }
+.notification-icon.status-icon.paid { color: var(--verde-forte); }
+.notification-icon.status-icon.pending { color: var(--vermelho); }
+
+
+.notification-title-text {
+    font-weight: 600;
+    color: var(--cinza-escuro);
+    font-size: 1.05rem;
 }
 
 .notification-date {
-  color: var(--cinza-escuro);
-  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+  color: var(--cinza-medio); /* Mais suave */
+  font-size: clamp(0.75rem, 2.5vw, 0.85rem); /* Ajustado */
   white-space: nowrap;
+  margin-left: 0.5rem; /* Espaço se o título for longo */
 }
 
 .notification-message {
   color: var(--cinza-escuro);
-  font-size: clamp(0.95rem, 3.5vw, 1.1rem);
-  line-height: 1.6;
+  font-size: clamp(0.9rem, 3.5vw, 1rem); /* Ajustado */
+  line-height: 1.5;
+  margin-bottom: 0.5rem; /* Espaço antes do link/botão */
 }
 
 .payment-link {
   display: inline-block;
-  margin-top: 0.625rem;
-  padding: 0.5rem 1rem;
-  background-color: var(--laranja);
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: var(--azul-link); /* Cor de link mais padrão */
   color: var(--branco);
   text-decoration: none;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  font-size: clamp(0.9rem, 3vw, 1rem);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 0.3rem;
+  font-weight: 500; /* Menos bold */
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  transition: background-color 0.2s ease;
 }
 
 .payment-link:hover {
-  background-color: #ff8c3a;
-  transform: translateY(-2px);
+  background-color: #2980b9; /* Azul mais escuro no hover */
 }
 
-.status-icon {
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
+/* Botão Marcar como Lida (individual) */
+.btn-mark-read {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--cinza-medio);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.25rem;
+  line-height: 1;
+  opacity: 0.5;
+  transition: opacity 0.2s ease, color 0.2s ease;
 }
-
-.status-icon.paid {
+.notification-item:hover .btn-mark-read {
+  opacity: 1; /* Mostra o botão no hover do item */
+}
+.btn-mark-read:hover {
   color: var(--verde-forte);
 }
-
-.status-icon.pending {
-  color: #ff0000;
+.btn-mark-read:disabled {
+  color: var(--cinza-claro);
+  cursor: not-allowed;
 }
+
 
 /* Estados */
 .loading-state,
-.empty-state {
+.empty-state,
+.error-state {
   text-align: center;
   color: var(--cinza-escuro);
-  font-size: clamp(1rem, 3.5vw, 1.2rem);
-  padding: 1.25rem;
+  font-size: clamp(1.1rem, 3.5vw, 1.25rem); /* Ajustado */
+  padding: 2rem; /* Aumentado padding */
   background-color: var(--branco);
   border-radius: 0.75rem;
-  margin: 1.25rem 0;
+  margin: 1.5rem 0; /* Aumentado margem */
+  border: 1px solid var(--roxo-claro);
+}
+.error-state {
+    color: var(--vermelho);
+    border-color: var(--vermelho);
 }
 
 /* Botão Falar com a Equipe */
 .btn-contact-team {
-  background-color: var(--verde-forte);
+  background-color: #25D366; /* Cor oficial do WhatsApp */
   color: var(--branco);
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
+  padding: 0.8rem 1.6rem; /* Ajustado */
+  border-radius: 25px; /* Mais arredondado */
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   font-weight: bold;
-  font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  font-size: clamp(0.95rem, 3.5vw, 1.05rem); /* Ajustado */
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  margin: 2rem auto 0;
+  gap: 0.75rem; /* Aumentado gap */
+  margin: 2.5rem auto 0; /* Aumentado margem superior */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 
 .btn-contact-team:hover {
-  background-color: #2e8b57;
+  background-color: #1DAE52; /* WhatsApp mais escuro */
   transform: translateY(-2px);
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .notifications-page {
-    padding-top: 70px;
-  }
-
-  .notifications-container {
-    padding: 15px;
-  }
-
-  .notifications-list {
-    gap: 1rem;
-  }
-
-  .notification-item {
-    padding: 1rem;
-  }
+  .notifications-container { padding: 15px; }
+  .notifications-list { gap: 0.8rem; }
+  .notification-item { padding: 0.8rem 1rem; }
 }
 
 @media (max-width: 480px) {
-  .notifications-title {
-    font-size: clamp(1.4rem, 5vw, 1.8rem);
-  }
-
-  .title-icon {
-    font-size: clamp(1.6rem, 6vw, 2rem);
-  }
-
-  .notification-header {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .notification-date {
-    font-size: clamp(0.75rem, 2vw, 0.85rem);
-  }
-
-  .notification-message {
-    font-size: clamp(0.9rem, 3vw, 1rem);
-  }
-
-  .btn-contact-team {
-    padding: 0.6rem 1.2rem;
-    font-size: clamp(0.9rem, 3vw, 1rem);
-  }
+  .notifications-title { font-size: clamp(1.5rem, 5vw, 2rem); }
+  .title-icon { font-size: clamp(1.8rem, 6vw, 2.2rem); }
+  .notification-header { flex-wrap: wrap; gap: 0.4rem; }
+  .notification-date { font-size: clamp(0.7rem, 2vw, 0.8rem); }
+  .notification-message { font-size: clamp(0.85rem, 3vw, 0.95rem); }
+  .btn-contact-team { padding: 0.7rem 1.4rem; font-size: clamp(0.9rem, 3vw, 1rem); }
+  .btn-mark-all-read { width: 100%; justify-content: center; }
 }

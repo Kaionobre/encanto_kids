@@ -1,15 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { logoutUser } from '../services/api'; // Importa a função de logout correta
 import '../styles/Navbar.css';
 
 function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log('Usuário desconectado');
-    // Limpa autenticação
-    localStorage.removeItem('isAuthenticated');
-    navigate('/login');
+    logoutUser(); // Chama a função que remove accessToken, refreshToken e limpa o header do Axios
+    // O console.log já está dentro da função logoutUser
+    navigate('/login'); // Redireciona para a página de login
   };
 
   return (

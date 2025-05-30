@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
 import Logo from '../assets/images/LOGO - ENCANTO KIDS 3.png';
+import { loginUser } from '../services/api'; // Importa a função de login
 
 function Login() {
   const navigate = useNavigate();
-  const [cpf, setCpf] = useState('');
+  const [cpf, setCpf] = useState(''); // Este será enviado como 'username'
   const [senha, setSenha] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // Máscara para CPF
   const formatCpf = (value) => {
@@ -26,21 +28,38 @@ function Login() {
     setCpf(formatted);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
 
     if (!cpf || !senha) {
       setError('Por favor, preencha todos os campos');
       return;
     }
 
-    // Simulação de autenticação (substituir por API real)
-    console.log('CPF:', cpf);
-    console.log('Senha:', senha);
-    localStorage.setItem('isAuthenticated', 'true');
+    setLoading(true);
+    try {
+      const cpfSemMascara = cpf.replace(/\D/g, '');
+      await loginUser(cpfSemMascara, senha);
 
-    setError('');
-    navigate('/childprofile');
+      console.log('Login bem-sucedido!');
+      navigate('/childprofile');
+
+      } catch (err) {
+      console.error('Falha no login:', err);
+      if (err.response && err.response.data) {
+        const apiError = err.response.data.detail || err.response.data.non_field_errors;
+        if (apiError) {
+          setError(Array.isArray(apiError) ? apiError.join(', ') : apiError);
+        } else {
+          setError('CPF ou senha inválidos. Verifique seus dados.');
+        }
+      } else {
+        setError('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -75,6 +94,7 @@ function Login() {
                   value={cpf}
                   onChange={handleCpfChange}
                   maxLength={14}
+                  disabled={loading}
                 />
               </div>
 
@@ -87,14 +107,15 @@ function Login() {
                   placeholder="Digite sua senha"
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
+                  disabled={loading}
                 />
                 <a href="/forgot-password" className="forgot-password-link">
                   Esqueceu sua senha?
                 </a>
               </div>
 
-              <button type="submit" className="login-button">
-                ENTRAR
+              <button type="submit" className="login-button" disabled={loading}>
+                {loading ? 'ENTRANDO...' : 'ENTRAR'}
               </button>
             </form>
           </div>

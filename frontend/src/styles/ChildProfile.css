@@ -1,4 +1,6 @@
-/* Paleta de cores */
+/* ======================= */
+/* PALETA DE CORES */
+/* ======================= */
 :root {
   --azul-claro: #59BACC;
   --laranja: #F7761D;
@@ -9,182 +11,253 @@
   --cinza-escuro: #606060;
   --verde-forte: #3CB371;
   --roxo-claro: #E8D8EA;
+  --vermelho-pendente: #dc3545;
+  --cinza-borda-hr: #e5e7eb;
 }
 
-/* Reset básico */
+/* ======================= */
+/* RESET E BASE */
+/* ======================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
 }
 
-/* Página */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--roxo-claro);
+}
+
+/* ======================= */
+/* CONTAINER PRINCIPAL */
+/* ======================= */
 .profile-page {
   background: linear-gradient(135deg, var(--roxo-claro) 0%, var(--branco) 100%);
   min-height: 100vh;
   padding-top: 70px;
-}
-
-/* Container principal */
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 70px);
-  padding: 20px;
-}
-
-/* Card */
-.card {
-  background-color: var(--branco);
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 500px;
-  padding: 30px;
-  border: 2px solid var(--roxo);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Foto */
-.photo-section {
-  margin-bottom: 20px;
-}
-
-.photo-section img {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 5px solid var(--branco);
-  object-fit: cover;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Informações */
-.info-section {
+.container {
   width: 100%;
-  text-align: left;
-}
-
-.info-section h2 {
-  color: var(--roxo);
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0px;
-}
-
-.info-grid p {
-  color: var(--cinza-escuro);
-  font-size: 1.1rem;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.info-grid p strong {
-  color: var(--roxo-escuro);
-  font-weight: 700;
-}
-
-/* Status do pagamento */
-.status {
-  padding: 6px 18px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.9rem;
-  display: inline-flex;
+  max-width: 700px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 5px;
 }
 
-.status-ativo {
-  background-color: var(--verde-forte);
-  color: var(--branco);
+/* ======================= */
+/* CARD DE PERFIL */
+/* ======================= */
+.card-profile {
+  background-color: var(--branco);
+  border-radius: 16px;
+  border: 1px solid var(--roxo-claro);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  margin: 2rem 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Remover o estilo padrão de links */
-.contract-link {
-  display: block;
-  margin-top: 25px;
-  padding: 12px 30px;
-  background-color: var(--roxo);
-  color: var(--branco);
-  text-decoration: none;
-  border-radius: 8px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+/* ======================= */
+/* IMAGEM DE PERFIL */
+/* ======================= */
+.child-identification-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  position: relative;
 }
 
-/* Quando o link estiver no estado de hover, focus ou active, garantir que o comportamento do link seja o esperado */
-.contract-link:hover,
-.contract-link:focus,
-.contract-link:active {
-  background-color: var(--roxo-escuro);
-  transform: translateY(-2px);
-  outline: none;  /* Remove o contorno do foco */
-  color: var(--branco); /* Garante que a cor não mude ao focar */
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .card {
-    max-width: 90%;
-    padding: 20px;
-  }
-
-  .photo-section img {
-    width: 140px;
-    height: 140px;
-  }
-
-  .info-section h2 {
-    font-size: 1.8rem;
-  }
-
-  .info-grid p {
-    font-size: 1rem;
+@media (min-width: 768px) {
+  .child-identification-section {
+    flex-direction: row;
+    align-items: center;
   }
 }
 
-@media (max-width: 480px) {
-  .profile-page {
-    padding-top: 70px;
-  }
+.profile-image-container {
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
 
-  .container {
-    padding: 15px;
-  }
-
-  .card {
-    padding: 15px;
-  }
-
-  .photo-section img {
+@media (min-width: 768px) {
+  .profile-image-container {
     width: 120px;
     height: 120px;
   }
+}
 
-  .info-section h2 {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
+.profile-image-small {
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--branco);
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+.profile-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: var(--branco);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.profile-image-container:hover .profile-image-overlay {
+  opacity: 1;
+}
+
+.profile-image-overlay span {
+  margin-top: 4px;
+}
+
+.profile-image-uploading-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--roxo-escuro);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.child-name-header {
+  color: var(--roxo-escuro);
+  font-size: 1.875rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .child-name-header {
+    margin-left: 1.5rem;
+    margin-top: 0;
+    text-align: left;
   }
+}
 
-  .info-grid p {
+/* ======================= */
+/* SEÇÃO DE INFORMAÇÕES */
+/* ======================= */
+.info-details-section {
+  background-color: var(--roxo);
+  border-radius: 0 0 16px 16px;
+  padding: 1.5rem;
+  width: 100%;
+  color: var(--branco);
+}
+
+.info-grid-profile {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.info-grid-profile p {
+  background-color: var(--branco);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: var(--cinza-escuro); /* texto normal */
+}
+
+.info-label {
+  font-weight: 700;
+  margin-right: 0.5em;
+  color: var(--roxo-escuro); /* título visível sobre fundo branco */
+}
+
+/* ======================= */
+/* RESPONSIVIDADE */
+/* ======================= */
+@media (max-width: 767px) {
+  .info-label {
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .info-grid-profile p {
     font-size: 0.95rem;
+    text-align: center;
   }
+  .child-identification-section {
+    padding-bottom: 1rem;
+  }
+  .info-details-section {
+    padding-top: 1rem;
+  }
+}
 
-  .contract-link {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
+/* ======================= */
+/* TAGS DE STATUS */
+/* ======================= */
+.status-tag-profile {
+  padding: 0.3rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  color: var(--branco);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 0.5rem;
+}
+
+.status-ativo-profile {
+  background-color: var(--verde-forte);
+}
+
+.status-inativo-profile {
+  background-color: var(--vermelho-pendente);
+}
+
+.status-ok-profile {
+  background-color: var(--verde-forte);
+}
+
+/* ======================= */
+/* MENSAGENS DE FEEDBACK */
+/* ======================= */
+.loading-message,
+.error-message,
+.info-message {
+  font-weight: 500;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.25rem;
 }

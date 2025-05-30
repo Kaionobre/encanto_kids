@@ -3,7 +3,8 @@ from apps.crianca.api.viewset import CriancaViewset
 from django.urls import path, include
 
 router = DefaultRouter()
-router.register(r'crianca', CriancaViewset)
+# Adicionamos o basename='crianca' aqui
+router.register(r'crianca', CriancaViewset, basename='crianca')
 
 urlpatterns = [
     path('', include(router.urls)),

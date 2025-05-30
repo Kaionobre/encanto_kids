@@ -9,6 +9,8 @@
   --cinza-escuro: #606060;
   --verde-forte: #3CB371;
   --roxo-claro: #E8D8EA;
+  --vermelho-pendente: #dc3545;
+  --vermelho-texto-ausente: #d9534f; /* Cor para texto de ausência */
 }
 
 /* Reset básico */
@@ -42,6 +44,62 @@
   margin-bottom: 30px;
 }
 
+/* Seletores de Criança e Data */
+.agenda-selectors {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #fdfaff; 
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  gap: 15px; 
+}
+
+.selector-group {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.selector-group label {
+  font-weight: bold;
+  color: var(--roxo-escuro);
+  font-size: 0.95rem;
+}
+
+.selector-group select,
+.selector-group .datepicker-input {
+  padding: 10px 12px;
+  border: 1px solid var(--roxo-claro);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--cinza-escuro);
+  background-color: var(--branco);
+  min-width: 180px; 
+}
+
+.selector-group select:focus,
+.selector-group .datepicker-input:focus {
+  outline: none;
+  border-color: var(--roxo);
+  box-shadow: 0 0 0 2px rgba(171, 118, 176, 0.3); 
+}
+
+.react-datepicker-wrapper {
+  display: inline-block; 
+  width: auto; 
+}
+.react-datepicker__input-container {
+  display: block; 
+}
+.react-datepicker__input-container .datepicker-input {
+    width: 100%; 
+}
+
+
 /* Seções da agenda */
 .agenda-sections {
   display: flex;
@@ -53,146 +111,265 @@
   background-color: var(--branco);
   border-radius: 12px;
   padding: 20px;
-  border-left: 4px solid var(--roxo);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid var(--roxo); 
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07); 
 }
 
 .agenda-section h2 {
-  color: var(--roxo);
+  color: var(--roxo-escuro); 
   font-size: 1.5rem;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
 }
 
 .agenda-section h2 .icon {
-  margin-right: 12px;
-  font-size: 1.8rem;
+  margin-right: 10px;
+  font-size: 1.6rem; 
+  color: var(--roxo); 
 }
 
 .presence-confirmed {
   color: var(--verde-forte);
 }
+/* NOVO: Estilo para texto de ausência */
+.text-absent {
+  color: var(--vermelho-texto-ausente);
+  font-weight: 500; /* Um pouco mais de destaque */
+}
+/* NOVO: Estilo para ícone de presença quando ausente */
+.presence-absent {
+  color: var(--vermelho-texto-ausente); /* Ícone de check fica vermelho */
+}
+
 
 .agenda-section p {
   color: var(--cinza-escuro);
-  font-size: 1.1rem;
-  line-height: 1.5;
+  font-size: 1.05rem; 
+  line-height: 1.6;
+  margin-bottom: 5px; 
 }
 
-/* Seção de Anexos */
+/* Seção de Anexos 
 .attachments-section {
-  background-color: var(--branco);
 }
+*/
 
 .attachments {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .attachment {
-  width: 150px;
-  height: 150px;
+  width: 140px; 
+  height: 140px; 
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid var(--cinza-escuro);
+  border: 1px solid #ddd; 
 }
+.attachment-item {
+    margin-bottom: 10px;
+    text-align: center; 
+}
+.attachment-description {
+    font-size: 0.8rem;
+    color: var(--cinza-escuro);
+    margin-top: 5px;
+    max-width: 140px; 
+    word-wrap: break-word;
+}
+/* REMOVIDO: .label-anexo-upload e #anexo-upload (pois o input foi removido do JSX) */
+
 
 /* Observações */
-.observations h2 {
-  color: var(--roxo);
-}
-
 .observations textarea {
   width: 100%;
   padding: 12px;
-  border: 2px solid var(--roxo);
+  border: 1px solid var(--roxo-claro); 
   border-radius: 8px;
   font-size: 1rem;
-  resize: none;
+  resize: vertical; 
   margin-top: 10px;
+  min-height: 80px;
+  color: var(--cinza-escuro);
 }
 
 .observations textarea:focus {
   outline: none;
-  border-color: var(--laranja);
+  border-color: var(--roxo);
+  box-shadow: 0 0 0 2px rgba(171, 118, 176, 0.3);
 }
 
-/* Botão Informar Falta */
+/* Botões */
+.btn-save-observation,
 .btn-report-absence {
-  background-color: var(--laranja);
+  background-color: var(--roxo);
   color: var(--branco);
   border: none;
-  padding: 12px 24px;
+  padding: 10px 20px; 
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
   font-weight: bold;
-  font-size: 1.1rem;
-  display: flex;
+  font-size: 1rem; 
+  display: inline-flex; 
   align-items: center;
-  margin: 20px auto 0;
+  justify-content: center; 
+  gap: 8px; 
 }
 
-.btn-report-absence svg {
-  margin-right: 10px;
-  font-size: 1.2rem;
+.btn-save-observation {
+  margin-top: 10px;
 }
 
+.btn-report-absence {
+  background-color: var(--laranja);
+  margin: 20px auto 0; 
+  display: flex; 
+}
+
+.btn-save-observation:hover {
+  background-color: var(--roxo-escuro);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
 .btn-report-absence:hover {
-  background-color: #ff8c3a;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background-color: #e6691b; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+
+.btn-save-observation:disabled,
+.btn-report-absence:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* NOVO: Estilos para o Modal de Justificativa */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Para ficar sobre outros conteúdos */
+}
+
+.modal-content {
+  background-color: var(--branco);
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-title {
+  color: var(--roxo-escuro);
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--roxo-claro);
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 70px;
+  margin-bottom: 20px;
+}
+.modal-textarea:focus {
+  outline: none;
+  border-color: var(--roxo);
+  box-shadow: 0 0 0 2px rgba(171, 118, 176, 0.2);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end; /* Alinha botões à direita */
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-modal {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-modal.btn-cancel {
+  background-color: #f0f0f0; /* Cinza claro */
+  color: var(--cinza-escuro);
+  border: 1px solid #ddd;
+}
+.btn-modal.btn-cancel:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-modal.btn-confirm {
+  background-color: var(--laranja);
+  color: var(--branco);
+}
+.btn-modal.btn-confirm:hover {
+  background-color: #e6691b;
+}
+.btn-modal:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .agenda-container {
-    padding: 15px;
+  .agenda-container { padding: 15px; }
+  .agenda-title { font-size: 1.8rem; }
+  .agenda-selectors { flex-direction: column; align-items: stretch; }
+  .selector-group { width: 100%; justify-content: space-between; }
+  .selector-group select, .selector-group .datepicker-input,
+  .react-datepicker-wrapper, .react-datepicker__input-container {
+    width: 100%; min-width: 0;
   }
-
-  .agenda-title {
-    font-size: 1.8rem;
-  }
-
-  .agenda-section {
-    padding: 15px;
-  }
-
-  .agenda-section h2 {
-    font-size: 1.3rem;
-  }
-
-  .agenda-section p {
-    font-size: 1rem;
-  }
-
-  .attachment {
-    width: 120px;
-    height: 120px;
-  }
+  .agenda-section { padding: 15px; }
+  .agenda-section h2 { font-size: 1.3rem; }
+  .agenda-section h2 .icon { font-size: 1.4rem; }
+  .agenda-section p { font-size: 1rem; }
+  .attachment { width: 100px; height: 100px; }
+  .attachment-description { max-width: 100px; }
 }
 
 @media (max-width: 480px) {
-  .agenda-title {
-    font-size: 1.6rem;
+  .agenda-title { font-size: 1.6rem; margin-bottom: 20px; }
+  .agenda-section h2 { font-size: 1.2rem; }
+  .agenda-section h2 .icon { font-size: 1.3rem; }
+  .agenda-section p { font-size: 0.9rem; }
+  .btn-report-absence, .btn-save-observation {
+    padding: 10px 15px; font-size: 0.95rem; width: 100%; margin-top: 15px;
   }
+  .btn-report-absence { margin: 15px 0 0; }
+  .modal-content { padding: 20px; }
+  .modal-title { font-size: 1.2rem; }
+}
 
-  .agenda-section h2 {
-    font-size: 1.2rem;
-  }
-
-  .agenda-section p {
-    font-size: 0.95rem;
-  }
-
-  .attachment {
-    width: 100px;
-    height: 100px;
-  }
-
-  .btn-report-absence {
-    padding: 10px 20px;
-    font-size: 1rem;
-  }
+/* Mensagens de Feedback */
+.loading-message,
+.error-message,
+.info-message {
+  font-weight: 500;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.25rem;
 }
